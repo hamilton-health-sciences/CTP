@@ -150,12 +150,12 @@ public class Configuration {
 		if (thisJavaBits.startsWith("64")) {
 			thisJavaBits = "<b><font color=\"red\">"+thisJavaBits+"</font></b>";
 		}
-		boolean javaOK = (thisJava.compareTo(ctpJava) >= 0);
-		javaOK &= (thisJava.compareTo(utilJava) >= 0);
-		if (isMIRC && (mircJava != null)) javaOK &= (thisJava.compareTo(mircJava) >= 0);
-		if (!javaOK) {
-			thisJava = "<b><font color=\"red\">"+thisJava+"</font></b>";
-		}
+//		boolean javaOK = (thisJava.compareTo(ctpJava) >= 0);
+//		javaOK &= (thisJava.compareTo(utilJava) >= 0);
+//		if (isMIRC && (mircJava != null)) javaOK &= (thisJava.compareTo(mircJava) >= 0);
+//		if (!javaOK) {
+//			thisJava = "<b><font color=\"red\">"+thisJava+"</font></b>";
+//		}
 
 		//Get the properties
 		props = new Properties();

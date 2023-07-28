@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CTP" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="org.rsna.ctp.ClinicalTrialProcessor" />
+    <module name="CTP" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/out/production/CTP" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build" run_configuration_type="AntRunConfiguration" />
+    </method>
+  </configuration>
+</component>

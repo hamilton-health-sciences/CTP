@@ -7,49 +7,15 @@
 
 package org.rsna.ctp.stdstages.anonymizer.dicom;
 
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.math.BigInteger;
-import java.nio.ByteOrder;
-import java.security.*;
-import java.util.Vector;
-
-import org.dcm4che.data.Dataset;
-import org.dcm4che.data.DcmDecodeParam;
-import org.dcm4che.data.DcmElement;
-import org.dcm4che.data.DcmEncodeParam;
-import org.dcm4che.data.DcmObjectFactory;
-import org.dcm4che.data.DcmParser;
-import org.dcm4che.data.DcmParserFactory;
-import org.dcm4che.data.FileFormat;
-import org.dcm4che.data.FileMetaInfo;
-import org.dcm4che.data.SpecificCharacterSet;
-import org.dcm4che.dict.DictionaryFactory;
-import org.dcm4che.dict.Status;
-import org.dcm4che.dict.TagDictionary;
-import org.dcm4che.dict.Tags;
-import org.dcm4che.dict.UIDs;
-import org.dcm4che.dict.VRs;
-
-import com.pixelmed.codec.jpeg.*;
-
-import org.rsna.ctp.stdstages.anonymizer.AnonymizerFunctions;
+import com.pixelmed.codec.jpeg.Parse;
+import org.apache.log4j.Logger;
+import org.dcm4che.data.*;
+import org.dcm4che.dict.*;
 import org.rsna.ctp.stdstages.anonymizer.AnonymizerStatus;
 
-import org.apache.log4j.Logger;
+import java.awt.*;
+import java.io.*;
+import java.util.Vector;
 
 /**
  * The CTP DICOM pixel anonymizer. The anonymizer blanks regions of
@@ -207,7 +173,7 @@ public class DICOMPixelAnonymizer {
 			//that occur above Tags.PixelData.
 			int tag;
 			while (!parser.hasSeenEOF()
-//					&& (parser.getStreamPosition() < fileLength)
+					&& (parser.getStreamPosition() < fileLength)
 						&& ((tag=parser.getReadTag()) != -1)
 							&& (tag != 0xFFFAFFFA)
 							&& (tag != 0xFFFCFFFC)) {
@@ -494,6 +460,8 @@ public class DICOMPixelAnonymizer {
 							boolean swap) throws Exception {
 		InputStream in = parser.getInputStream();
 		int len = parser.getReadLength();
+//		int available = in.available();
+
 		if (swap && (len & 1) != 0) {
 			throw new Exception(
 				"Illegal length for swapping value bytes: " + len);
